@@ -1,6 +1,7 @@
 import tkinter as tk
 import numpy as np
 import pandas as pd
+from kivy.core.window import Window
 from tkinter.filedialog import askdirectory, askopenfilename
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -19,7 +20,6 @@ Screen:
                 Rectangle:
                         pos: self.pos
                         size: self.size
-
         RelativeLayout:                       
                 #textfield for OutPutFilename
                 MDTextField:
@@ -101,11 +101,11 @@ class GeneMerger(MDApp):
         operationsFile = \
             "C:\\Users\\work\\OneDrive - Werner Heisenberg Gymnasium\\Desktop\\genemergertestfiles\\opdat.xlsx"
         global inputFile
-        inputFile = "C:\\Users\\work\\PycharmProjects\\GeneMerger\\genemergertestfiles\\testinputfile.xlsx"
+        inputFile = "C:\\Users\\work\\OneDrive - Werner Heisenberg Gymnasium\\Desktop\\Seminararbeit files\\Project2\\GENLISTE_BSP_Comparison_Genotyp_CrklCrkKo_vs_HCT16wt.xlsx"
         global headFile
-        headFile = "C:\\Users\\work\\PycharmProjects\\GeneMerger\\genemergertestfiles\\headers.xlsx"
+        headFile = "C:\\Users\\work\\OneDrive - Werner Heisenberg Gymnasium\\Desktop\\genemergertestfiles\\headers.xlsx"
         global geneFile
-        geneFile = "C:\\Users\\work\\PycharmProjects\\GeneMerger\\genemergertestfiles\\test.tsv"
+        geneFile = "C:\\Users\\work\\OneDrive - Werner Heisenberg Gymnasium\\Desktop\\Seminararbeit files\\Project2\\table.tsv"
         global proceed
         proceed = False
         global lst
@@ -182,6 +182,7 @@ class GeneMerger(MDApp):
         outputdir = selecteddirectory
 
     def readFiles(self):
+        global ophead
         if inputFile != "" and headFile != "" and geneFile != "":
             # checking the essential data
             warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -257,7 +258,7 @@ class GeneMerger(MDApp):
             for i in headh:
                 # remove empty values
                 if not i.__contains__("Unnamed:"):
-                    # remove methadata again
+                    # remove metadata again
                     header += i + "\t"
                     sortmap[i] = ""
             if operationsFile != "":
@@ -413,7 +414,6 @@ class GeneMerger(MDApp):
 
                     if len(lst) == 10:
                         return ""
-
             def mergethread(genel):
                 column = ""
                 for genef in genenamefromgenefile:
@@ -549,6 +549,7 @@ class GeneMerger(MDApp):
             return ""
 
     def build(self):
+        Window.size = (800, 500)
         return self.screen
 
     @staticmethod
