@@ -25,7 +25,7 @@ session = getters.Getters()
 style = ttk.Style(root)
 
 # Import the tcl file
-root.tk.call("source", "C:\\Users\\work\\PycharmProjects\\Forest-ttk-theme\\forest-dark.tcl")
+root.tk.call("source", r"Forest-ttk-theme/forest-dark.tcl")
 filetypes = [".tab",  ".xlsx", ".csv"]
 # Set the theme with the theme_use method
 style.theme_use("forest-dark")
@@ -49,7 +49,9 @@ notebook.add(tab_1, image =readmeicon)
 ReadMe=open("ReadME.txt",'r')
 textRM=ReadMe.read()
 label = ttk.Label(tab_1, text=textRM, justify="center")
-label.grid(row=0, column=0, pady=10, columnspan=2)
+label.grid(row=0, column=0, columnspan=2)
+
+
 
 # Tab #2
 tab_2 = ttk.Frame(notebook)
@@ -230,12 +232,12 @@ widgets_frame.grid_rowconfigure(0, weight=1)
 widgets_frame.frame = tk.Frame(widgets_frame)
 widgets_frame.frame.grid_columnconfigure(0, weight=1)
 widgets_frame.frame.grid_rowconfigure(0, weight=1)
-widgets_frame.sheet = Sheet(widgets_frame.frame, data=lines)
+widgets_frame.sheet = Sheet(widgets_frame.frame, data=lines,height=root.winfo_height(),width=root.winfo_width())
 widgets_frame.sheet.enable_bindings()
 widgets_frame.frame.grid(row=0, column=0, sticky="nswe")
 widgets_frame.sheet.grid(row=0, column=0, sticky="nswe")
 widgets_frame.sheet.change_theme(theme="dark blue")
-
+widgets_frame.sheet.config(height=label.winfo_reqheight(),width=label.winfo_reqwidth())
 def savefile():
    tablename.get()
    if filetypevar.get() == ".tab":
@@ -264,7 +266,6 @@ widgets_frame.sheet.enable_bindings(("single_select",
                            "edit_cell"))
 
 notebook.pack(expand=True, fill="both", padx=5, pady=5)
-
 # Sizegrip
 sizegrip = ttk.Sizegrip(root)
 

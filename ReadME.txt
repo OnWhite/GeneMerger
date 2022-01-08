@@ -7,7 +7,6 @@ The results of these will then be added to the file in a new column. To save the
 the interface has to be approved by clicking the "Proceed" Button.
 
 Possible Operations:
-
 +
 Addition
 
@@ -27,12 +26,10 @@ log
 Logarithm
 
 log2
-Logarithm 2
-only one Column
+Logarithm 2 (only one Column)
 
 sign
-Sign
-only one Column
+Sign (only one Column)
 
 signcomp
 Sign comparison
